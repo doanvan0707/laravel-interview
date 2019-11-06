@@ -22,10 +22,17 @@
         <tbody>
             @foreach($categories as $key => $category)
                 <tr>
-                <td>{{ ++$key }}</td>
-                <td>{{ $category->name }}</td>
-                <td>Chỉnh sửa | Xóa</td>
+                    <td>{{ ++$key }}</td>
+                    <td>{{ $category->name }}
+                        <tr>
+                            @foreach($category->children as $children)
+                                <td>{{ $children->name }}</td>
+                            @endforeach
+                        </tr>
+                    </td>
+                    <td>Chỉnh sửa | Xóa</td>
                 </tr>
+
             @endforeach
         </tbody>
     </table>
