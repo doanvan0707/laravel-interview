@@ -49,7 +49,7 @@
         </li>
         <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Người dùng</span></a>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label">Bài viết</span></a>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.post.index') }}"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label">Bài viết</span></a>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-comment-o"></i><span class="app-menu__label">Bình luận</span></a>
         </li>

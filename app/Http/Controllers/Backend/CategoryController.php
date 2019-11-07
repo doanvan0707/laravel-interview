@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_id', 0)->get();
         return view('backend.category.list_category')->with('categories', $categories);
     }
 
@@ -65,7 +66,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        // dd($category);
+        $categories = DB::table('categories')->where('parent_id', '=', 0)->where('id', '!=', $id)->get();
+        // dd($categories);
+        return view('backend.category.edit_category', compact('categories', 'category'));
     }
 
     /**
@@ -77,7 +82,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $data = $request->all();
+        $category->update($data);
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -86,8 +94,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $category = Category::findOrFail($id);
+        if ($category->parent_id == '0') {
+            // $request->session()->flash('error', 'Xoa khong thanh cong!');
+            return back()->with('error', 'khong xoa duoc');
+        } else {
+            $category->delete();
+            // $request->session()->flash('success', 'Xoa khong thanh cong!');
+            return back()->with('success', 'xoa thanh cong');
+        }
     }
 }

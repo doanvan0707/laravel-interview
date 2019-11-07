@@ -11,6 +11,13 @@
         </ul>
     </div>
     <a class="btn btn-outline-success" href="{{ route('admin.category.create') }}">Thêm danh mục</a>
+    <div class="alert-danger">
+        {{ session('error') }}
+    </div>
+    <div class="alert-success">
+        {{ session('success') }}
+    </div>
+
     <table class="table table-hover table-bordered">
         <thead>
             <tr>
@@ -23,17 +30,33 @@
             @foreach($categories as $key => $category)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    <td>{{ $category->name }}
-                        <tr>
-                            @foreach($category->children as $children)
-                                <td>{{ $children->name }}</td>
+                    <td>
+                        {{ $category->name }} <br />
+                        <ul>
+                            @foreach ($category->children as $child)
+                            <li>
+                                <a href="">{{ $child->name }}</a>
+                                <a href="{{ route('admin.category.edit', $child->id) }}">Edit</a>
+                                <form action="{{ route('admin.category.destroy', $child->id) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </li>
                             @endforeach
-                        </tr>
+                        </ul>
                     </td>
-                    <td>Chỉnh sửa | Xóa</td>
+                    <td>
+                        <a href="{{ route('admin.category.edit', $category->id) }}">Edit</a>
+                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
                 </tr>
-
             @endforeach
         </tbody>
     </table>
+    
 @endsection
