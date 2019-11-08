@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
         </ul>
     </div>
-    <form action="{{ route('admin.post.store') }}" method="post">
+    <form action="{{ route('admin.posts.store') }}" method="post">
         @csrf
         <div class="form-group">
             <label for="">Title</label>
@@ -25,10 +25,14 @@
         </div>
         <div class="form-group">
             <label for="">Content</label>
-            <input type="text" name="content" class="form-control">
+            <textarea name="content" cols="30" rows="4" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <input type="submit" value="Thêm" class="btn btn-primary">
         </div>
     </form>
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'content' );
+    </script>
 @endsection

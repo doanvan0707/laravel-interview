@@ -10,7 +10,7 @@
             <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
         </ul>
     </div>
-    <a class="btn btn-outline-success" href="{{ route('admin.category.create') }}">Thêm danh mục</a>
+    <a class="btn btn-outline-success" href="{{ route('admin.categories.create') }}">Thêm danh mục</a>
     <div class="alert-danger">
         {{ session('error') }}
     </div>
@@ -36,8 +36,8 @@
                             @foreach ($category->children as $child)
                             <li>
                                 <a href="">{{ $child->name }}</a>
-                                <a href="{{ route('admin.category.edit', $child->id) }}">Edit</a>
-                                <form action="{{ route('admin.category.destroy', $child->id) }}" method="post">
+                                <a href="{{ route('admin.categories.edit', $child->id) }}">Edit</a>
+                                <form action="{{ route('admin.categories.destroy', $child->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input type="submit" value="Delete">
@@ -47,8 +47,8 @@
                         </ul>
                     </td>
                     <td>
-                        <a href="{{ route('admin.category.edit', $category->id) }}">Edit</a>
-                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="post">
+                        <a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a>
+                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post">
                             @csrf
                             @method('delete')
                             <input type="submit" value="Delete">

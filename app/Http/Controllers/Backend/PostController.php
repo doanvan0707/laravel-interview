@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('backend.post.list_post');
+        return view('backend.post.list-post');
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('backend.post.add_post');
+        return view('backend.post.add-post');
     }
 
     /**
@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
     }
 
     /**

@@ -10,7 +10,7 @@
             <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
         </ul>
     </div>
-    <a class="btn btn-outline-success" href="{{ route('admin.post.create') }}">Thêm post</a>
+    <a class="btn btn-outline-success" href="{{ route('admin.posts.create') }}">Thêm post</a>
     <div class="alert-danger">
         {{ session('error') }}
     </div>

@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::where('parent_id', 0)->get();
-        return view('backend.category.list_category')->with('categories', $categories);
+        return view('backend.category.list-category')->with('categories', $categories);
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::where('parent_id', 0)->get();
-        return view('backend.category.add_category')->with('categories', $categories);
+        return view('backend.category.add-category')->with('categories', $categories);
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->parent_id = $request->parent_id;
         $category->save();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -70,7 +70,7 @@ class CategoryController extends Controller
         // dd($category);
         $categories = DB::table('categories')->where('parent_id', '=', 0)->where('id', '!=', $id)->get();
         // dd($categories);
-        return view('backend.category.edit_category', compact('categories', 'category'));
+        return view('backend.category.edit-category', compact('categories', 'category'));
     }
 
     /**
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $data = $request->all();
         $category->update($data);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**

@@ -41,15 +41,15 @@
     </div>
     <ul class="app-menu">
         <li><a class="app-menu__item" href="{{ route('admin.dashboard') }}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.category.index') }}"><i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Danh mục</span></a>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.categories.index') }}"><i class="app-menu__icon fa fa-database"></i><span class="app-menu__label">Danh mục</span></a>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">Sản phẩm</span></a>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.products.index') }}"><i class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">Sản phẩm</span></a>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Đơn đặt hàng</span></a>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Người dùng</span></a>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.post.index') }}"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label">Bài viết</span></a>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.posts.index') }}"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label">Bài viết</span></a>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-comment-o"></i><span class="app-menu__label">Bình luận</span></a>
         </li>
