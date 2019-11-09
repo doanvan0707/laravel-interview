@@ -17,6 +17,7 @@
     <div class="alert-success">
         {{ session('success') }}
     </div>
+    @include('notify::messages')
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -32,12 +33,18 @@
             @foreach ($products as $key => $product)
                 <tr>
                     <td>{{ ++$key }}</td>
-                    {{-- <td>{{ $product->image }}</td> --}}
-                    <td><img src="{{ url('uploads/'.$product->image) }}" alt="image"></td>
                     <td>{{ $product->name }}</td>
+                    <td><img src="{{ url('uploads/'.$product->image) }}" alt="image"></td>
                     <td>{{ $product->category->name }}</td>
                     <td>{{ $product->description }}</td>
-                    <td>Edit | Delete</td>
+                    <td>
+                        <a href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <input type="submit" value="Delete" class="btn btn-danger" onclick="confirm('ban chac chan khong?')">
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

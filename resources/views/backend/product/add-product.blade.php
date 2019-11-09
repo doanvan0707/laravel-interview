@@ -16,15 +16,18 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" name="name" placeholder="Enter name" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="name" placeholder="Enter name" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Image</label>
-                    <input type="file" name="image" placeholder="Enter image" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="file" name="image" placeholder="Enter image" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
-                    <input type="text" name="description" placeholder="Enter description" class="form-control">
+                    <input required  oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="description" placeholder="Enter description" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
@@ -36,51 +39,62 @@
                     </div>
                 <div class="form-group">
                     <label for="">Screen</label>
-                    <input type="text" name="screen" placeholder="Enter screen" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="screen" placeholder="Enter screen" class="form-control">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="">System</label>
-                    <input type="text" name="system" placeholder="Enter system" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="system" placeholder="Enter system" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Fcamera</label>
-                    <input type="text" name="fcamera" placeholder="Enter fcamera" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="fcamera" placeholder="Enter fcamera" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Bcamera</label>
-                    <input type="text" name="bcamera" placeholder="Enter bcamera" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="bcamera" placeholder="Enter bcamera" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Price</label>
-                    <input type="text" name="price" placeholder="Enter price" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="price" placeholder="Enter price" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">CPU</label>
-                    <input type="text" name="cpu" placeholder="Enter cpu" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="cpu" placeholder="Enter cpu" class="form-control">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="">Ram</label>
-                    <input type="text" name="ram" placeholder="Enter ram" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="ram" placeholder="Enter ram" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Rom</label>
-                    <input type="text" name="rom" placeholder="Enter rom" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="rom" placeholder="Enter rom" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Smenory</label>
-                    <input type="text" name="smenory" placeholder="Enter smenory" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="smenory" placeholder="Enter smenory" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Pin</label>
-                    <input type="text" name="pin" placeholder="Enter pin" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="pin" placeholder="Enter pin" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="">Qantity</label>
-                    <input type="text" name="quantity" placeholder="Enter quantity" class="form-control">
+                    <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
+                    oninput="this.setCustomValidity('')" type="text" name="quantity" placeholder="Enter quantity" class="form-control">
                 </div>
             </div>
         </div>

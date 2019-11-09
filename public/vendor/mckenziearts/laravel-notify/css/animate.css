@@ -1,0 +1,14 @@
+/*
+|--------------------------------------------------------------------------
+| Animate Module (use animate.css)
+|--------------------------------------------------------------------------
+|
+| Use animate.css to animate the notice.
+|
+*/
+
+'animate' => [
+    'in_class' => 'bounceInRight', 
+    'out_class' => 'bounceOutRight',
+    'timeout'   => 5000
+],

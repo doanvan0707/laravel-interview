@@ -13,22 +13,22 @@
         @csrf
         <div class="form-group">
             <label for="">Title</label>
-            <input type="text" name="title" class="form-control">
+            <input type="text" name="title" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="">Thumbnail</label>
-            <input type="file" name="thumbnail" class="form-control">
+            <input type="file" name="thumbnail" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="">Description</label>
-            <input type="text" name="description" class="form-control">
+            <input type="text" name="description" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="">Content</label>
-            <textarea name="content" cols="30" rows="4" class="form-control"></textarea>
+            <textarea name="content" cols="30" rows="4" class="form-control" required></textarea>
         </div>
         <div class="form-group">
-            <input type="submit" value="Thêm" class="btn btn-primary">
+            <input type="submit" value="Thêm" class="btn btn-primary" required>
         </div>
     </form>
     <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>

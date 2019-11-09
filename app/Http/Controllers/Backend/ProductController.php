@@ -69,9 +69,10 @@ class ProductController extends Controller
                 $fileName = $file->getClientOriginalName();
                 $file->move('uploads', $fileName);
             }
+            notify()->success('True');
             return redirect()->route('admin.products.index')->with('success', 'Create product successly');
         } else {
-
+            notify()->success('False');
             return redirect()->route('admin.products.index')->with('error', 'Create product failure');;
         }
     }
@@ -95,7 +96,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $categories = Category::where('parent_id','<>', 0)->get();
+        return view('backend.product.edit-product', compact('product', 'categories'));
     }
 
     /**
@@ -107,7 +110,34 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $fileName = $file->getClientOriginalName();
+            $file->move('uploads', $fileName);
+            $product->image = $fileName;
+        }
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
+        $product->screen = $request->screen;
+        $product->system = $request->system;
+        $product->fcamera = $request->fcamera;
+        $product->bcamera = $request->bcamera;
+        $product->price = $request->price;
+        $product->cpu = $request->cpu;
+        $product->ram = $request->ram;
+        $product->rom = $request->rom;
+        $product->smenory = $request->smenory;
+        $product->pin = $request->pin;
+        $product->quantity = $request->quantity;
+        $product->save();
+        if ($product->save()) {
+            return redirect()->route('admin.products.index')->with('success', 'Update product successly');
+        } else {
+
+            return redirect()->route('admin.products.index')->with('error', 'Update product failure');
+        }
     }
 
     /**
@@ -118,6 +148,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        if ($product->delete()) {
+            return redirect()->route('admin.products.index')->with('success', 'Delete product successly');
+        } else {
+            return redirect()->route('admin.products.index')->with('error', 'Delete product failure');
+        }
     }
 }
