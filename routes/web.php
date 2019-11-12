@@ -25,3 +25,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend', 'as' => 'admin.'], 
     Route::resource('posts', 'PostController');
     Route::resource('products', 'ProductController');
 });
+
+
+
+Route::group(['prefix' => '/', 'namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+    Route::get('/', 'FrontEndController@index')->name('index');
+    Route::get('/product-slug/{product}', 'FrontEndController@getDetailProduct' )->name('get-detail-product');
+    Route::get('/cart/{product}', 'FrontEndController@addToCart' )->name('add-to-cart');
+});

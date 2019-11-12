@@ -25,7 +25,7 @@
                 <th>Name</th>
                 <th>Image</th>
                 <th>Category</th>
-                <th>Description</th>
+                <th>Price</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -36,7 +36,7 @@
                     <td>{{ $product->name }}</td>
                     <td><img src="{{ url('uploads/'.$product->image) }}" alt="image"></td>
                     <td>{{ $product->category->name }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td>{{ $product->price }}VND</td>
                     <td>
                         <a href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">

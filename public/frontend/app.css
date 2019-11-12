@@ -1,0 +1,54 @@
+.wrap-menu ul {
+  list-style: none;
+}
+.wrap-menu ul li {
+  display: inline-block;
+  padding: 10px 20px;
+}
+.wrap-menu ul li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.wrap-menu ul li a:hover {
+  text-decoration: underline;
+  color: #ff0000;
+}
+footer {
+  background: rgba(0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+}
+
+.wrap-menu {
+  background: rgba(0, 0, 0.2);
+  padding: 10px 0;
+}
+.newarrival {
+  background: green;
+  width: 50px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+.price {
+  color: #fe980f;
+  font-size: 26px;
+  font-weight: bold;
+}
+.quantity-count {
+  border: solid 1px #ccc;
+  font-weight: bold;
+  height: 33px;
+  text-align: center;
+  width: 30px;
+}
+.cart-button {
+  background: #fe980f;
+  color: #fff !important;
+  font-size: 15px;
+  margin-left: 20px;
+  text-decoration: none;
+}
