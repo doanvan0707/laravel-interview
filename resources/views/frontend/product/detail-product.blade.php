@@ -16,7 +16,7 @@
         <input type="text" class="quantity-count" value="1">
         <button>+</button>
       </div>
-      <a href="" class="btn btn-danger">Mua ngay</a>
+      <a href="{{ route('frontend.add-to-cart', $product->id) }}" class="btn btn-danger">Mua ngay</a>
       <a href="" class="btn btn-outline-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng</a>
     </div>
   </div>

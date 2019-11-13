@@ -20,6 +20,9 @@
           <li><a href="">Contact</a></li>
           <li><a href=""><i class="fa fa-cart-plus" aria-hidden="true"></i></a></li>
         </ul>
+        @if(Session::has('product'))
+          <p class="alert alert-danger">{{ Session::get('product') }}</p> 
+        @endif
     </div>
     </div>
   </header>

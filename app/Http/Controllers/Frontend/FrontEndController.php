@@ -23,9 +23,11 @@ class FrontEndController extends Controller
         return view('frontend.product.detail-product', compact('product', 'products'));
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
-        return view('frontend.product.cart', compact('product'));
+        // $product = Product::findOrFail($id);    
+        // $request->session()->put('products', $product);
+        $arr = ['name' => 'van', 'age' => '30'];
+        return view('frontend.product.cart', compact('arr'));
     }
 }

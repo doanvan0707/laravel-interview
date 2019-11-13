@@ -40,5 +40,8 @@
         </div>
       </div>
     @endforeach
+    @if(Session::has('product'))
+      <p class="alert alert-danger">{{ Session::get('product') }}</p> 
+    @endif
   </div>
 @endsection
