@@ -11,12 +11,16 @@
         </ul>
     </div>
     <a class="btn btn-outline-success" href="{{ route('admin.categories.create') }}">Thêm danh mục</a>
-    <div class="alert-danger">
-        {{ session('error') }}
-    </div>
-    <div class="alert-success">
-        {{ session('success') }}
-    </div>
+    @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <table class="table table-hover table-bordered">
         <thead>

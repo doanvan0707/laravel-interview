@@ -39,7 +39,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = [
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role_id' => $request->role_id,
+            'yourname' => $request->yourname,
+            'address' => $request->address,
+            'phone' => $request->phone,
+        ];
         User::create($data);
         return redirect()->route('admin.users.index');
     }

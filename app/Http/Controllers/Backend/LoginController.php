@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\User;
 
 class LoginController extends Controller
@@ -18,7 +18,11 @@ class LoginController extends Controller
     {
         $email = $request->email;
         $password = bcrypt($request->password);
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        $data = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+        if (Auth::attempt($data) && Auth::user()->role_id == 1) {
             $request->session()->flash('success', 'Dang nhap thanh cong');
             return redirect()->route('admin.dashboard');
         } else {
@@ -26,5 +30,10 @@ class LoginController extends Controller
             return back();
         }
         
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('admin.login');
     }
 }

@@ -1,9 +1,9 @@
 @extends('frontend.layouts.app')
 @section('content')
   Cart page
-  @if(Session::has('product'))
-    <p class="alert alert-danger">{{ Session::get('product') }}</p> 
-  @endif
-    {{ $arr['name'] }}
-    {{ $arr['age'] }}
+  @if(Session::has('products'))
+  <div class="alert alert-danger">
+      {{ session('products') }}
+  </div>
+@endif
 @endsection

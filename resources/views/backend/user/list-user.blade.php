@@ -11,12 +11,16 @@
         </ul>
     </div>
     <a class="btn btn-outline-success" href="{{ route('admin.users.create') }}">Add User</a>
-    <div class="alert-danger">
+    @if(Session::has('error'))
+      <div class="alert alert-danger">
         {{ session('error') }}
-    </div>
-    <div class="alert-success">
+      </div>
+    @endif
+    @if(Session::has('success'))
+      <div class="alert alert-success">
         {{ session('success') }}
-    </div>
+      </div>
+    @endif
     @include('notify::messages')
     <table class="table table-bordered table-hover">
         <thead>
