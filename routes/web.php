@@ -42,6 +42,7 @@ Route::group(['prefix' => '/', 'namespace' => 'Frontend', 'as' => 'frontend.'], 
     Route::get('/', 'FrontEndController@index')->name('index');
     Route::get('/product-slug/{product}', 'FrontEndController@getDetailProduct' )->name('get-detail-product');
     Route::get('/cart/{product}', 'FrontEndController@addToCart' )->name('add-to-cart');
+    Route::get('/cartv2', 'FrontEndController@showAllCart')->name('show-all-cart');
 });
 
 Auth::routes();
