@@ -92,7 +92,7 @@
                     oninput="this.setCustomValidity('')" type="text" name="pin" placeholder="Enter pin" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="">Qantity</label>
+                    <label for="">Quantity</label>
                     <input required oninvalid="this.setCustomValidity('Trường này là bắt buộc')"
                     oninput="this.setCustomValidity('')" type="text" name="quantity" placeholder="Enter quantity" class="form-control">
                 </div>

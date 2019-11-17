@@ -2,11 +2,7 @@
 @section('title', 'Cart')
  
 @section('content')
-  @if(Session::has('success'))
-  <div class="alert alert-success">
-    {{ session('success') }}
-  </div>
-  @endif
+ 
     <table id="cart" class="table table-hover table-condensed">
         <thead>
         <tr>
@@ -29,7 +25,6 @@
                 <tr>
                     <td data-th="Product">
                         <div class="row">
-                            {{-- <div class="col-sm-3 hidden-xs"><img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive"/></div> --}}
                             <div class="col-sm-3 hidden-xs"><img src="{{ url('uploads/'.$details['image']) }}" alt="image" width="100" height="100" class="img-responsive"></div>
                             <div class="col-sm-9">
                                 <h4 class="nomargin">{{ $details['name'] }}</h4>
@@ -61,5 +56,65 @@
         </tr>
         </tfoot>
     </table>
- 
+    <hr>
+    <h2>Thông tin khách hàng</h2>
+    <form action="{{ route('frontend.checkout') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="">Yourname</label>
+            <input type="text" name="yourname" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type="email" name="email" class="form-control">
+            <p>Chi tiết đơn hàng sẽ được gửi vào email</p>
+        </div>
+        <div class="form-group">
+            <label for="">Phone</label>
+            <input type="text" name="phone" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Address</label>
+            <input type="text" name="address" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Đặt hàng luôn">
+        </div>
+    </form>
+
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $('.update-cart').click(function (e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            $.ajax({
+                url: '{{ url('update-cart') }}',
+                method: "put",
+                data: {_token: '{{ csrf_token() }}', id: ele.attr('data-id'), quantity: ele.parents('tr').find('.quantity').val()},
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $('.remove-from-cart').click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            if (confirm("Are you sure")) {
+                $.ajax({
+                    url: '{{ url('remove-from-cart') }}',
+                    method: 'DELETE',
+                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                    success: function(response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

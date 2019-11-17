@@ -26,6 +26,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend', 'as' => 'admin.', '
     Route::resource('products', 'ProductController');
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
+    Route::resource('orders', 'OrderController');
     Route::get('login', 'LoginController@login')->name('login');
     Route::post('show-login', 'LoginController@checkLogin')->name('check-login');
 });
@@ -43,6 +44,9 @@ Route::group(['prefix' => '/', 'namespace' => 'Frontend', 'as' => 'frontend.'], 
     Route::get('/product-slug/{product}', 'FrontEndController@getDetailProduct' )->name('get-detail-product');
     Route::get('/cart/{product}', 'FrontEndController@addToCart' )->name('add-to-cart');
     Route::get('/cartv2', 'FrontEndController@showAllCart')->name('show-all-cart');
+    Route::put('update-cart', 'FrontEndController@update');
+    Route::delete('remove-from-cart', 'FrontEndController@remove');
+    Route::post('checkout', 'FrontEndController@checkout')->name('checkout');
 });
 
 Auth::routes();

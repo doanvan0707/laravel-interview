@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Product;
 use App\Post;
-
+use App\Order;
+use App\OrderDetail;
 
 class FrontEndController extends Controller
 {
@@ -70,5 +71,47 @@ class FrontEndController extends Controller
     public function showAllCart()
     {
         return view('frontend.product.cart');
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]['quantity'] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated Successfully');
+        }
+    }
+
+    public function remove(Request $request)
+    {
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
+    }
+
+    public function checkout(Request $request)
+    {
+        $data = $request->all();
+        $cart = session()->get('cart');
+        $idItem = array_keys($cart);
+        if (isset($cart)) {
+            $orders = Order::create($data);
+            for ($i = 0; $i < count($idItem); $i++) {
+                $result = [
+                    'order_id' => $orders->id,
+                    'product_id' => $idItem[$i],
+                    'quantity' => $cart[$idItem[$i]]['quantity'],
+                    'price' => $cart[$idItem[$i]]['price'],
+                ];
+                OrderDetail::create($result);
+            }
+            return redirect()->route('frontend.index');
+        }
     }
 }

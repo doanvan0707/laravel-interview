@@ -46,7 +46,7 @@
         </li>
         <li class="treeview"><a class="app-menu__item" href="{{ route('admin.products.index') }}"><i class="app-menu__icon fa fa-shopping-bag"></i><span class="app-menu__label">Sản phẩm</span></a>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Đơn đặt hàng</span></a>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.orders.index') }}"><i class="app-menu__icon fa fa-shopping-cart"></i><span class="app-menu__label">Đơn đặt hàng</span></a>
         </li>
         <li class="treeview"><a class="app-menu__item" href="{{ route('admin.roles.index') }}"><i class="app-menu__icon fa fa-list"></i><span class="app-menu__label">Phân quyền</span></a>
         </li>
