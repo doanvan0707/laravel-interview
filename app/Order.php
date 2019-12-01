@@ -7,21 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'yourname', 'email', 'phone', 'address', 'status_id', 
+        'customer_id', 'orderDate', 'status_id',
     ];
 
-    public function orderdetails()
+    public function orderDetails()
     {
         return $this->hasMany('App\OrderDetail');
     }
 
-    public function products()
+    public function customer()
     {
-        return $this->hasManyThrough('App\Product', 'App\OrderDetail', 'product_id', 'id', 'id');
+        return $this->belongsTo('App\Customer');
     }
 
-    public function paymentStatus()
-    {
-        return $this->belongsTo('App\PaymentStatus', 'payment_id');
-    }
 }

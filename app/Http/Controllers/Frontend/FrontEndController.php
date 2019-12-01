@@ -10,6 +10,7 @@ use App\Product;
 use App\Post;
 use App\Order;
 use App\OrderDetail;
+use App\Customer;
 
 class FrontEndController extends Controller
 {
@@ -19,7 +20,7 @@ class FrontEndController extends Controller
         return view('frontend.home.index', compact('products'));
     }
 
-    public function getDetailProduct($id) 
+    public function getDetailProduct($id)
     {
         $product = Product::findOrFail($id);
         $products = Product::where('id', '<>', $id)->get();
@@ -97,21 +98,12 @@ class FrontEndController extends Controller
 
     public function checkout(Request $request)
     {
+        $cart = session('cart');
         $data = $request->all();
-        $cart = session()->get('cart');
-        $idItem = array_keys($cart);
-        if (isset($cart)) {
-            $orders = Order::create($data);
-            for ($i = 0; $i < count($idItem); $i++) {
-                $result = [
-                    'order_id' => $orders->id,
-                    'product_id' => $idItem[$i],
-                    'quantity' => $cart[$idItem[$i]]['quantity'],
-                    'price' => $cart[$idItem[$i]]['price'],
-                ];
-                OrderDetail::create($result);
-            }
-            return redirect()->route('frontend.index');
+        Customer::create($data);
+        $customers = Customer::all();
+        foreach($customers as $key => $customer) {
+            echo $customer->id;
         }
     }
 }

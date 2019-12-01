@@ -34,9 +34,9 @@
                 <tr>
                     <td>{{ ++$key }}</td>
                     <td>{{ $product->name }}</td>
-                    <td><img src="{{ url('uploads/'.$product->image) }}" alt="image"></td>
+                    <td><img style="width: 100px; height: 100px; object-fit: cover" src="{{ url('uploads/'.$product->image) }}" alt="image"></td>
                     <td>{{ $product->category->name }}</td>
-                    <td>{{ $product->price }}VND</td>
+                    <td>{{ number_format($product->price, '0', ',', '.') }}&nbsp;VND</td>
                     <td>
                         <a href="{{ route('admin.products.edit', $product->id) }}">Edit</a>
                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST">

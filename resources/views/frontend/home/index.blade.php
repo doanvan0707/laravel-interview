@@ -28,10 +28,10 @@
   </div>
   <h2 class="text-center mt-5 mt-5">Sản phẩm</h2>
   <div class="row">
-    @foreach ($products as $product)    
+    @foreach ($products as $product)
       <div class="col-lg-4">
         <div class="card" style="width: 18rem;">
-          <a href="{{ route('frontend.get-detail-product', $product->id) }}"><img src="{{ url('uploads/'.$product->image) }}" alt="image"></a>
+          <a href="{{ route('frontend.get-detail-product', $product->id) }}"><img style="width: 100px; height: 100px; object-fit: cover" src="{{ url('uploads/'.$product->image) }}" alt="image"></a>
           <div class="card-body">
             <a href="{{ route('frontend.get-detail-product', $product->id) }}"><h5 class="card-title">{{ $product->name }}</h5></a>
             <p class="card-text">{{ $product->price }}</p>
@@ -41,7 +41,7 @@
       </div>
     @endforeach
     @if(Session::has('product'))
-      <p class="alert alert-danger">{{ Session::get('product') }}</p> 
+      <p class="alert alert-danger">{{ Session::get('product') }}</p>
     @endif
   </div>
 @endsection

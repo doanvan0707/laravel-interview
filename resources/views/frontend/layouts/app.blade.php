@@ -21,7 +21,7 @@
           <li><a href=""><i class="fa fa-cart-plus" aria-hidden="true"></i></a></li>
         </ul>
         <div class="container">
- 
+
           <div class="row">
               <div class="col-lg-12 col-sm-12 col-12 main-section">
                   <div class="dropdown">
@@ -33,17 +33,17 @@
                               <div class="col-lg-6 col-sm-6 col-6">
                                   <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                               </div>
-       
+
                               <?php $total = 0 ?>
                               @foreach((array) session('cart') as $id => $details)
                                   <?php $total += $details['price'] * $details['quantity'] ?>
                               @endforeach
-       
+
                               <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                                   <p>Total: <span class="text-info">$ {{ $total }}</span></p>
                               </div>
                           </div>
-       
+
                           @if(session('cart'))
                               @foreach(session('cart') as $id => $details)
                                   <div class="row cart-detail">
@@ -68,7 +68,7 @@
           </div>
       </div>
         @if(Session::has('product'))
-          <p class="alert alert-danger">{{ Session::get('product') }}</p> 
+          <p class="alert alert-danger">{{ Session::get('product') }}</p>
         @endif
     </div>
     </div>
@@ -79,8 +79,8 @@
   <footer class="pt-3 pb-3">
       Web created by vandev :))
     </footer>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"> 
-    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   @yield('scripts')

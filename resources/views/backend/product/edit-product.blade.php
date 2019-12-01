@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <label for="">Image</label>
                     <input type="file" name="image" placeholder="Enter image" class="form-control">
-                    <img src="{{ url('uploads/'.$product->image) }}" alt="image">
+                    <img style="width: 100px; height: 100px; object-fit: cover" src="{{ url('uploads/'.$product->image) }}" alt="image">
                 </div>
                 <div class="form-group">
                     <label for="">Description</label>
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <label for="">Description</label>
                     <select name="category_id" id="" class="form-control">
-                        @foreach ($categories as $category)    
+                        @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
