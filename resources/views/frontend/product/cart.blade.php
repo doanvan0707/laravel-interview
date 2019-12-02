@@ -74,10 +74,6 @@
             <input type="text" name="phone" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">Address</label>
-            <input type="text" name="address" class="form-control">
-        </div>
-        <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Đặt hàng luôn">
         </div>
     </form>

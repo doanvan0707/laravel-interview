@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Product;
 use App\Post;
 use App\Order;
-use App\OrderDetail;
+use App\OrderProduct;
 use App\Customer;
 
 class FrontEndController extends Controller
@@ -98,12 +99,37 @@ class FrontEndController extends Controller
 
     public function checkout(Request $request)
     {
+
+        $customerSave = [
+            'yourname' => $request->input('yourname'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        $customerId = DB::table('customers')->insertGetId($customerSave);
+
+        $orderSave = [
+            'customer_id' => $customerId,
+            'order_date' => $customerSave['created_at'],
+            'order_status' => 'Null',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+        $orderId = DB::table('orders')->insertGetId($orderSave);
+
         $cart = session('cart');
-        $data = $request->all();
-        Customer::create($data);
-        $customers = Customer::all();
-        foreach($customers as $key => $customer) {
-            echo $customer->id;
+        foreach ($cart as $key => $item) {
+            $orderProductSave = [
+                'order_id' => $orderId,
+                'product_id' => $key,
+                'price' => $item['price'],
+                'quantity' => $item['quantity'],
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+            DB::table('order_products')->insert($orderProductSave);
         }
+        return redirect()->route('frontend.index');
     }
 }

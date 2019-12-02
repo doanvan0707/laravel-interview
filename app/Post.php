@@ -10,8 +10,8 @@ class Post extends Model
         'category_id', 'thumbnail', 'title', 'description', 'content',
     ];
 
-    public function category()
+    public function categoryPost()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\CategoryPost');
     }
 }

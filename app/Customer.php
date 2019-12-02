@@ -12,7 +12,7 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = [
-        'yourname', 'email', 'phone', 'address'
+        'yourname', 'phone', 'email',
     ];
 
     public function orders()
