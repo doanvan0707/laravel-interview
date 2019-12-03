@@ -14,7 +14,6 @@ class CreateOrderProductsTable extends Migration
     public function up()
     {
         Schema::create('order_products', function (Blueprint $table) {
-
             $table->integer('order_id')->nullable()->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('product_id')->nullable()->unsigned();

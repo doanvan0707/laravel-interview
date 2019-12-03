@@ -8,7 +8,7 @@ use App\Category;
 use App\Product;
 use App\User;
 use App\Order;
-use App\OrderDetail;
+use App\OrderProduct;
 
 class OrderController extends Controller
 {
@@ -20,8 +20,8 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::all();
-        $orderDetails = OrderDetail::all();
-        return view('backend.order.list-order', compact('orders', 'orderDetails'));
+        $orderProducts = OrderProduct::all();
+        return view('backend.order.list-order', compact('orders', 'orderProducts'));
     }
 
     /**
@@ -53,7 +53,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $orderProducts = OrderProduct::where('order_id', $id)->first();
+        dd($orderProducts->price);
+        return view('backend.order.detail-order', compact('orderProducts'));
     }
 
     /**

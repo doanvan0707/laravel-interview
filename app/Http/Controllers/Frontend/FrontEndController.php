@@ -112,7 +112,7 @@ class FrontEndController extends Controller
         $orderSave = [
             'customer_id' => $customerId,
             'order_date' => $customerSave['created_at'],
-            'order_status' => 'Null',
+            'status_id' => 1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];

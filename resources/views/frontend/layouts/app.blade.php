@@ -38,12 +38,10 @@
                               @foreach((array) session('cart') as $id => $details)
                                   <?php $total += $details['price'] * $details['quantity'] ?>
                               @endforeach
-
                               <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
-                                  <p>Total: <span class="text-info">$ {{ $total }}</span></p>
+                                  <p>Total: <span class="text-info"> {{ number_format($total, '0', ',', '.') }}&nbsp;VND</span></p>
                               </div>
                           </div>
-
                           @if(session('cart'))
                               @foreach(session('cart') as $id => $details)
                                   <div class="row cart-detail">
@@ -52,7 +50,7 @@
                                       </div>
                                       <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                           <p>{{ $details['name'] }}</p>
-                                          <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                          <span class="price text-info"> {{ number_format($details['price'], '0', ',', '.') }}&nbsp;VND</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
                                       </div>
                                   </div>
                               @endforeach
@@ -78,7 +76,7 @@
   </div>
   <footer class="pt-3 pb-3">
       Web created by vandev :))
-    </footer>
+  </footer>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
