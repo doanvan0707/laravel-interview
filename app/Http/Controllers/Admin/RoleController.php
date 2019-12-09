@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Category;
-use App\Product;
-use App\User;
-use App\Order;
-use App\OrderProduct;
+use App\Role;
 
-class OrderController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        $orderProducts = OrderProduct::all();
-        return view('backend.order.list-order', compact('orders', 'orderProducts'));
+        $roles = Role::all();
+        return view('backend.role.list-role', compact('roles'));
     }
 
     /**
@@ -31,7 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.role.add-role');
     }
 
     /**
@@ -42,7 +37,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Role::create($data);
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -53,9 +50,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $orderProducts = OrderProduct::where('order_id', $id)->first();
-        dd($orderProducts->price);
-        return view('backend.order.detail-order', compact('orderProducts'));
+        //
     }
 
     /**
@@ -66,7 +61,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        return view('backend.role.edit-role', compact('role'));
     }
 
     /**
@@ -78,7 +74,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $data = $request->all();
+        $role->update($data);
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -89,6 +88,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return back();
     }
 }

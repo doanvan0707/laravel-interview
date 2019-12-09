@@ -1,13 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
+use App\Http\Controllers\Controller;
+use App\Category;
+use App\Product;
+use App\User;
+use App\Order;
+use App\OrderProduct;
 
-class PostController extends Controller
+class OrderController extends Controller
 {
+
+    private $order;
+    private  $orderProduct;
+
+    public function __construct(Order $order, OrderProduct $orderProduct)
+    {
+        $this->order = $order;
+        $this->orderProduct = $orderProduct;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +29,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('backend.post.list-post');
+        $orders = $this->order->all();
+        $orderProducts = $this->orderProduct->all();
+        return view('backend.order.list-order', compact('orders', 'orderProducts'));
     }
 
     /**
@@ -25,7 +41,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('backend.post.add-post');
+        //
     }
 
     /**
@@ -36,7 +52,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        //
     }
 
     /**
@@ -47,7 +63,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $orderProducts = $this->orderProduct->where('order_id', $id)->first();
+        return view('backend.order.detail-order', compact('orderProducts'));
     }
 
     /**

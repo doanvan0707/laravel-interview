@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    private $category;
+
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +24,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('parent_id', 0)->get();
+        $categories = $this->category->where('parent_id', 0)->get();
         return view('backend.category.list-category')->with('categories', $categories);
     }
 
@@ -28,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id', 0)->get();
+        $categories = $this->category->where('parent_id', 0)->get();
         return view('backend.category.add-category')->with('categories', $categories);
     }
 
@@ -40,11 +47,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
-        $category->parent_id = $request->parent_id;
-        $category->save();
-        return redirect()->route('admin.categories.index');
+        $category = $this->category;
+        if ($category->create($request->all())) {
+            $request->session()->flash('success', 'Tạo mới danh mục thành công');
+            return redirect()->route('admin.categories.index');
+        } else {
+            $request->session()->flash('error', 'Tạo mới danh mục thất bại');
+            return back();
+        }
     }
 
     /**
@@ -66,7 +76,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->category->findOrFail($id);
         // dd($category);
         $categories = DB::table('categories')->where('parent_id', '=', 0)->where('id', '!=', $id)->get();
         // dd($categories);
@@ -82,10 +92,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::findOrFail($id);
-        $data = $request->all();
-        $category->update($data);
-        return redirect()->route('admin.categories.index');
+        $category = $this->category->findOrFail($id);
+        if ($category->update($request->all())) {
+            $request->session()->flash('success', 'Chỉnh sửa danh mục thành công');
+            return redirect()->route('admin.categories.index');
+        } else {
+            $request->session()->flash('error', 'Chỉnh sửa danh mục thất bại');
+            return back();
+        }
     }
 
     /**
@@ -94,16 +108,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Request $request)
+    public function destroy(Request $request)
     {
-        $category = Category::findOrFail($id);
-        if ($category->parent_id == '0') {
-            // $request->session()->flash('error', 'Xoa khong thanh cong!');
-            return back()->with('error', 'khong xoa duoc');
+        $category = $this->category->findOrFail($request->category_id);
+        if ($category->delete()) {
+            $request->session()->flash('success', 'Xóa danh mục thành công');
+            return back();
         } else {
-            $category->delete();
-            // $request->session()->flash('success', 'Xoa khong thanh cong!');
-            return back()->with('success', 'xoa thanh cong');
+            $request->session()->flash('error', 'Xóa danh mục thất bại');
+            return back();
         }
     }
 }

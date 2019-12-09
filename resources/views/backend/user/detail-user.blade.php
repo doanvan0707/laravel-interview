@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin')
 @section('title', 'Detail User')
 @section('content')
   <div class="app-title">
@@ -10,5 +10,5 @@
         <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
     </ul>
   </div>
-  
+
 @endsection

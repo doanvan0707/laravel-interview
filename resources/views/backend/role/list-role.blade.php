@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin')
 @section('title', 'All Role')
 @section('content')
     <div class="app-title">

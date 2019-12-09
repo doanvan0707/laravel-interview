@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -14,22 +14,21 @@ class LoginController extends Controller
         return view('backend.login.index');
     }
 
-    public function checkLogin(Request $request) 
+    public function checkLogin(Request $request)
     {
         $email = $request->email;
-        $password = bcrypt($request->password);
+        $password = $request->password;
         $data = [
             'email' => $request->email,
             'password' => $request->password
         ];
         if (Auth::attempt($data) && Auth::user()->role_id == 1) {
-            $request->session()->flash('success', 'Dang nhap thanh cong');
+            $request->session()->flash('success', 'Đăng nhập thành công!!!');
             return redirect()->route('admin.dashboard');
         } else {
-            $request->session()->flash('error', 'Dang nhap that bat');
+            $request->session()->flash('error', 'Đăng nhập thất bại!!!');
             return back();
         }
-        
     }
 
     public function logout() {

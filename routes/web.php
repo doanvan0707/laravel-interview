@@ -19,27 +19,27 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Backend', 'as' => 'admin.', 'middleware' => 'check-login-admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'check-login-admin'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard');
     Route::resource('categories', 'CategoryController');
     Route::resource('posts', 'PostController');
     Route::resource('products', 'ProductController');
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
+    Route::resource('customers', 'CustomerController');
     Route::resource('orders', 'OrderController');
     Route::get('login', 'LoginController@login')->name('login');
     Route::post('show-login', 'LoginController@checkLogin')->name('check-login');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Backend', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
     Route::get('login', 'LoginController@login')->name('login')->middleware('checked-login');
     Route::post('show-login', 'LoginController@checkLogin')->name('check-login');
 });
 
-Route::get('admin/logout', 'Backend\LoginController@logout')->name('admin.logout');
+Route::get('admin/logout', 'Admin\LoginController@logout')->name('admin.logout');
 
-
-Route::group(['prefix' => '/', 'namespace' => 'Frontend', 'as' => 'frontend.'], function () {
+Route::group(['prefix' => '/', 'namespace' => 'Home', 'as' => 'frontend.'], function () {
     Route::get('/', 'FrontEndController@index')->name('index');
     Route::get('/product-slug/{product}', 'FrontEndController@getDetailProduct' )->name('get-detail-product');
     Route::get('/cart/{product}', 'FrontEndController@addToCart' )->name('add-to-cart');

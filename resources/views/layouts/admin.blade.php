@@ -50,7 +50,9 @@
         </li>
         <li class="treeview"><a class="app-menu__item" href="{{ route('admin.roles.index') }}"><i class="app-menu__icon fa fa-list"></i><span class="app-menu__label">Phân quyền</span></a>
         </li>
-        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.users.index') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Người dùng</span></a>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.users.index') }}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Quản trị viên</span></a>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="{{ route('admin.customers.index') }}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Khách hàng</span></a>
         </li>
         <li class="treeview"><a class="app-menu__item" href="{{ route('admin.posts.index') }}"><i class="app-menu__icon fa fa-newspaper-o"></i><span class="app-menu__label">Bài viết</span></a>
         </li>
@@ -81,5 +83,15 @@
     }
 </script>
 @notifyJs
+<script>
+    $(document).ready(function () {
+        $('#delete1').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var category_id = button.data('categoryid');
+            var modal = $(this);
+            modal.find('.modal-body #category_id').val(category_id);
+        });
+    });
+</script>
 </body>
 </html>

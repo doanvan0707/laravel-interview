@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin')
 @section('title', 'Thêm sản phẩm')
 @section('content')
     <div class="app-title">
@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="">Description</label>
                     <select name="category_id" id="" class="form-control">
-                        @foreach ($categories as $category)    
+                        @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>

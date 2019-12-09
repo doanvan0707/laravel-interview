@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Role;
+use App\Customer;
 
-class RoleController extends Controller
+class CustomerController extends Controller
 {
+    private $customer;
+
+    public function __construct(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +22,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return view('backend.role.list-role', compact('roles'));
+        $customers = $this->customer->all();
+        return view('backend.customer.list-customer', compact('customers'));
     }
 
     /**
@@ -26,7 +33,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.role.add-role');
+        //
     }
 
     /**
@@ -37,9 +44,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Role::create($data);
-        return redirect()->route('admin.roles.index');
+        //
     }
 
     /**
@@ -61,8 +66,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::findOrFail($id);
-        return view('backend.role.edit-role', compact('role'));
+        //
     }
 
     /**
@@ -74,10 +78,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $role = Role::findOrFail($id);
-        $data = $request->all();
-        $role->update($data);
-        return redirect()->route('admin.roles.index');
+        //
     }
 
     /**
@@ -88,8 +89,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::findOrFail($id);
-        $role->delete();
-        return back();
+        //
     }
 }

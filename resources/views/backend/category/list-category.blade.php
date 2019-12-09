@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin')
 @section('title', 'Tất cả chuyên mục')
 @section('content')
     <div class="app-title">
@@ -51,16 +51,37 @@
                         </ul>
                     </td>
                     <td>
-                        <a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a>
-                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="post">
-                            @csrf
-                            @method('delete')
-                            <input type="submit" value="Delete">
-                        </form>
+                        <a class="btn btn-warning" href="{{ route('admin.categories.edit', $category->id) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <button class="btn btn-danger" data-categoryid="{{ $category->id }}" data-toggle="modal" data-target="#delete1" title="Xóa danh mục"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    
+    <div class="modal modal-danger fade" id="delete1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa danh mục</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('admin.categories.destroy','test') }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <p class="text-center">
+                            Bạn chắc chắn muốn xóa danh mục này?
+                        </p>
+                        <input type="hidden" name="category_id" id="category_id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Không, quay lại</button>
+                        <button type="submit" class="btn btn-warning">Có</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection

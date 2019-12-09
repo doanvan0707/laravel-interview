@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.admin')
 @section('title', 'Tất cả bài viết')
 @section('content')
     <div class="app-title">
@@ -21,5 +21,5 @@
             {{ session('success') }}
         </div>
     @endif
-    
+
 @endsection
